@@ -1,3 +1,5 @@
+# Sidetrade final project by Ayoub Khalfaoui Hadi
+
 This is a Repl template setup for [Next.js](https://nextjs.org/) projects utilizing Typescript.  The template was created using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Typescript options.
 
 Note: This project is using newer versions of key packages than the current NextJS template on Replit.
