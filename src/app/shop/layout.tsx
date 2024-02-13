@@ -1,4 +1,6 @@
+import { Basket } from "@/components/Basket";
 import { Button } from "@/components/atoms/Button";
+import { ButtonArrow } from "@/components/atoms/ButtonArrow";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -28,10 +30,8 @@ export default function RootLayout({
 								shop
 							</span>
 						</Link>
-						<div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-							<Link href="/portal">
-								<Button>portal</Button>
-							</Link>
+						<div className="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+							<Button to="/portal">portal</Button>
 							<button
 								data-collapse-toggle="navbar-cta"
 								type="button"
