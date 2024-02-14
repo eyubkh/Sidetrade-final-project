@@ -1,6 +1,6 @@
-import { Button } from "@/components/atoms/Button";
-import { ButtonArrow } from "@/components/atoms/ButtonArrow";
-import { ButtonLink } from "@/components/atoms/ButtonLink";
+import { Button } from "@/components/Button";
+import { ButtonArrow } from "@/components/ButtonArrow";
+import { ButtonLink } from "@/components/ButtonLink";
 export default function Home() {
 	return (
 		<main className="min-h-screen grid content-center">

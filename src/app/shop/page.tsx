@@ -1,10 +1,11 @@
 "use client";
 import { Basket } from "@/components/Basket";
+import { IProduct } from "@/types/global";
 import { useEffect, useState } from "react";
 
 function Page() {
-	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useState([]);
+	const [products, setProducts] = useState<IProduct[]>([]);
+	const [cart, setCart] = useState<IProduct[]>([]);
 	useEffect(() => {
 		(async () => {
 			const response = await fetch("/api/products").then((data) => data.json());

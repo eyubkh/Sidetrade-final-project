@@ -2,10 +2,11 @@
 import { AddNewProduct } from "@/components/AddNewProduct";
 import { Container } from "@/components/Container";
 import { SearchBar } from "@/components/SearchBar";
+import { IProduct } from "@/types/global";
 import { useEffect, useState } from "react";
 
 function ProductsPage() {
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState<IProduct[]>([]);
 	const [filter, setFilter] = useState("");
 	useEffect(() => {
 		(async () => {
@@ -42,7 +43,7 @@ function ProductsPage() {
 						</thead>
 						<tbody>
 							{products
-								.filter((product: { product_name: string }) => {
+								.filter((product) => {
 									const name = product.product_name;
 									if (name) {
 										return name.toLowerCase().includes(filter.toLowerCase());

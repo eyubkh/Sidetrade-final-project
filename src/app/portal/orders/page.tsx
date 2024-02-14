@@ -2,11 +2,12 @@
 import { Container } from "@/components/Container";
 import { DropDown } from "@/components/DropDown";
 import { SearchBar } from "@/components/SearchBar";
-import { Button } from "@/components/atoms/Button";
+import { Button } from "@/components/Button";
+import { IOrderLine } from "@/types/global";
 import { useState, useEffect, useRef } from "react";
 
 function OrdersPage() {
-	const [orders, setOrders] = useState([]);
+	const [orders, setOrders] = useState<IOrderLine[]>([]);
 	const [status, setStatus] = useState("All");
 	const [filter, setFilter] = useState("");
 	useEffect(() => {
