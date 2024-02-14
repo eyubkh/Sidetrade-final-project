@@ -1,6 +1,4 @@
-import { Basket } from "@/components/Basket";
-import { Button } from "@/components/atoms/Button";
-import { ButtonArrow } from "@/components/atoms/ButtonArrow";
+import { Button } from "@/components/Button";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";

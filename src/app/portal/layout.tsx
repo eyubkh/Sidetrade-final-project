@@ -1,5 +1,5 @@
 import { Container } from "@/components/Container";
-import { Button } from "@/components/atoms/Button";
+import { Button } from "@/components/Button";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";

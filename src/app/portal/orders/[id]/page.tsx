@@ -1,6 +1,6 @@
 "use client";
+import { IOrderLine } from "@/types/global";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -8,9 +8,10 @@ type Props = {
 		id: string;
 	};
 };
+
 function Order({ params }: Props) {
 	const { id } = params;
-	const [order, setOrder] = useState(null);
+	const [order, setOrder] = useState<IOrderLine | null>(null);
 
 	useEffect(() => {
 		(async () => {

@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Button } from "./atoms/Button";
-import { ButtonArrow } from "./atoms/ButtonArrow";
+import { Button } from "./Button";
+import { ButtonArrow } from "./ButtonArrow";
+import { IProduct } from "@/types/global";
 
 type Props = {
 	data: {
-		cart: [];
-		setCart: React.Dispatch<React.SetStateAction<[]>>;
+		cart: IProduct[];
+		setCart: React.Dispatch<React.SetStateAction<IProduct[]>>;
 	};
 };
 

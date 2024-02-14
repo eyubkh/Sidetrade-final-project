@@ -1,8 +1,9 @@
 "use client";
+import { IProduct } from "@/types/global";
 import { useState } from "react";
 
 type Props = {
-	setProduts: React.Dispatch<React.SetStateAction<never[]>>;
+	setProduts: React.Dispatch<React.SetStateAction<IProduct[]>>;
 };
 
 interface CustomForm extends EventTarget {
