@@ -1,21 +1,22 @@
 "use client";
 import { Container } from "@/components/Container";
+import { DropDown } from "@/components/DropDown";
+import { SearchBar } from "@/components/SearchBar";
 import { Button } from "@/components/atoms/Button";
 import { useState, useEffect, useRef } from "react";
 
 function OrdersPage() {
 	const [orders, setOrders] = useState([]);
-	const ref = useRef(null);
+	const [status, setStatus] = useState("All");
+	const [filter, setFilter] = useState("");
 	useEffect(() => {
 		(async () => {
-			const response = await fetch(`/api/orders?offset=${orders.length}`).then(
-				(data) => data.json(),
-			);
+			const response = await fetch(
+				`/api/orders?offset=0&status=${status}`,
+			).then((data) => data.json());
 			setOrders(response);
 		})();
-	}, []);
-
-	console.log({ totola: orders.length });
+	}, [status]);
 
 	const onScrollHandler = async (event: React.UIEvent<HTMLDivElement>) => {
 		const target = event.target as HTMLDivElement;
@@ -25,9 +26,9 @@ function OrdersPage() {
 		console.log(isNearBottom);
 		if (isNearBottom) {
 			console.log({ isNearBottom });
-			const response = await fetch(`/api/orders?offset=${orders.length}`).then(
-				(data) => data.json(),
-			);
+			const response = await fetch(
+				`/api/orders?offset=${orders.length}&status=${status}`,
+			).then((data) => data.json());
 			setOrders((prev) => prev.concat(response));
 		}
 	};
@@ -38,40 +39,11 @@ function OrdersPage() {
 			className="overflow-y-scroll h-[100vh] pt-24"
 		>
 			<Container>
-				<div className="pb-4 bg-white dark:bg-gray-900">
-					<label htmlFor="table-search" className="sr-only">
-						Search
-					</label>
-					<div className="relative mt-1">
-						<div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-							<svg
-								className="w-4 h-4 text-gray-500 dark:text-gray-400"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 20 20"
-							>
-								<path
-									stroke="currentColor"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-								/>
-							</svg>
-						</div>
-						<input
-							type="text"
-							id="table-search"
-							className="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-							placeholder="Search htmlFor items"
-						/>
-					</div>
+				<div className="flex gap-4 py-4 relative">
+					<SearchBar setFilter={setFilter} />
+					<DropDown status={{ status, setStatus }} />
 				</div>
-				<div
-					ref={ref}
-					className="relative overflow-x-auto shadow-md sm:rounded-lg"
-				>
+				<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 					<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 						<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>

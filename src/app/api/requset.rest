@@ -1,7 +1,17 @@
 GET http://localhost:3000/api/products
 
 ###
-GET http://localhost:3000/api/orders
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "selling_price": 100,
+  "cost_price": 50
+}
+
+###
+GET http://localhost:3000/api/orders?status=Shipped
 
 ###
 GET http://localhost:3000/api/orders/1
