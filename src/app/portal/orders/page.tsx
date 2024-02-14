@@ -12,11 +12,11 @@ function OrdersPage() {
 	useEffect(() => {
 		(async () => {
 			const response = await fetch(
-				`/api/orders?offset=0&status=${status}`,
+				`/api/orders?offset=0&status=${status}&customer=${filter}`,
 			).then((data) => data.json());
 			setOrders(response);
 		})();
-	}, [status]);
+	}, [status, filter]);
 
 	const onScrollHandler = async (event: React.UIEvent<HTMLDivElement>) => {
 		const target = event.target as HTMLDivElement;
@@ -27,7 +27,7 @@ function OrdersPage() {
 		if (isNearBottom) {
 			console.log({ isNearBottom });
 			const response = await fetch(
-				`/api/orders?offset=${orders.length}&status=${status}`,
+				`/api/orders?offset=${orders.length}&status=${status}&customer=${filter}`,
 			).then((data) => data.json());
 			setOrders((prev) => prev.concat(response));
 		}
@@ -40,7 +40,7 @@ function OrdersPage() {
 		>
 			<Container>
 				<div className="flex gap-4 py-4 relative">
-					<SearchBar setFilter={setFilter} />
+					<SearchBar setFilter={setFilter} delay={1000} />
 					<DropDown status={{ status, setStatus }} />
 				</div>
 				<div className="relative overflow-x-auto shadow-md sm:rounded-lg">

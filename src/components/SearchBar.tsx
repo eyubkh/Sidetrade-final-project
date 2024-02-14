@@ -1,10 +1,13 @@
 type Props = {
 	setFilter: React.Dispatch<React.SetStateAction<string>>;
+	delay?: number;
 };
 
-export function SearchBar({ setFilter }: Props) {
+export function SearchBar({ setFilter, delay = 0 }: Props) {
 	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setFilter(event.target.value);
+		setTimeout(() => {
+			setFilter(event.target.value);
+		}, delay);
 	};
 	return (
 		<div className="bg-white dark:bg-gray-900">
