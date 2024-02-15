@@ -12,6 +12,8 @@ function OrdersPage() {
 	const [orders, setOrders] = useState<IOrderLine[] | undefined>(undefined);
 	const [status, setStatus] = useState("All");
 	const [filter, setFilter] = useState("");
+	let fetching = true;
+
 	useEffect(() => {
 		(async () => {
 			const response = await fetch(
@@ -26,7 +28,8 @@ function OrdersPage() {
 		const { scrollTop, scrollHeight, clientHeight } = target;
 
 		const isNearBottom = scrollTop + clientHeight >= scrollHeight;
-		if (isNearBottom && orders) {
+		if (isNearBottom && orders && fetching === true) {
+			fetching = false;
 			const response = await fetch(
 				`/api/orders?offset=${orders.length}&status=${status}&customer=${filter}`,
 			).then((data) => data.json());
