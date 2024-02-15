@@ -28,8 +28,7 @@ export function DropDown({ status }: Props) {
 				>
 					<path
 						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeLinecap="round"
 						strokeWidth="2"
 						d="m1 1 4 4 4-4"
 					/>
@@ -47,6 +46,7 @@ export function DropDown({ status }: Props) {
 					<li>
 						<div className="flex items-center">
 							<input
+								readOnly
 								checked={status.status === "All"}
 								id="default-radio-1"
 								type="radio"
@@ -69,6 +69,7 @@ export function DropDown({ status }: Props) {
 					<li>
 						<div className="flex items-center">
 							<input
+								readOnly
 								checked={status.status === "Shipped"}
 								id="default-radio-2"
 								type="radio"
@@ -91,6 +92,7 @@ export function DropDown({ status }: Props) {
 					<li>
 						<div className="flex items-center">
 							<input
+								readOnly
 								checked={status.status === "Unshipped"}
 								id="default-radio-3"
 								type="radio"

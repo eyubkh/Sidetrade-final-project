@@ -26,9 +26,7 @@ function OrdersPage() {
 		const { scrollTop, scrollHeight, clientHeight } = target;
 
 		const isNearBottom = scrollTop + clientHeight >= scrollHeight;
-		console.log(isNearBottom);
 		if (isNearBottom && orders) {
-			console.log({ isNearBottom });
 			const response = await fetch(
 				`/api/orders?offset=${orders.length}&status=${status}&customer=${filter}`,
 			).then((data) => data.json());

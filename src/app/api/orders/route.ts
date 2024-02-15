@@ -7,7 +7,6 @@ export async function GET(request: Request) {
 	const status = searchParams.get("status") ?? "All";
 	const customer = searchParams.get("customer") ?? "";
 
-	console.log(offset, status, customer);
 	const url = process.env.SUPABASE_URL;
 	const key = process.env.SUPABASE_KEY;
 	if (!url || !key) return Response.json({ error: "Error access to db.s" });
