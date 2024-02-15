@@ -14,7 +14,6 @@ export async function GET() {
 
 async function getProducts(supabase: SupabaseClient<Database>) {
 	const { data: products, error } = await supabase.from("product").select();
-	// .range(0, 9);
 	if (error) throw new Error("Error access to db.");
 
 	return products;
@@ -22,7 +21,7 @@ async function getProducts(supabase: SupabaseClient<Database>) {
 
 export async function POST(request: Request) {
 	const res = await request.json();
-	const { product_name, selling_price, cost_price } = res;
+	const { product_name, selling_price, cost_price, image_url } = res;
 
 	const url = process.env.SUPABASE_URL;
 	const key = process.env.SUPABASE_KEY;
@@ -34,6 +33,7 @@ export async function POST(request: Request) {
 		product_name,
 		selling_price: Number(selling_price),
 		cost_price: Number(cost_price),
+		image_url,
 	});
 
 	return Response.json(product);
@@ -41,7 +41,12 @@ export async function POST(request: Request) {
 
 async function addProduct(
 	supabase: SupabaseClient<Database>,
-	obj: { product_name: string; selling_price: number; cost_price: number },
+	obj: {
+		product_name: string;
+		selling_price: number;
+		cost_price: number;
+		image_url: string;
+	},
 ) {
 	const { data: product, error } = await supabase
 		.from("product")

@@ -3,6 +3,7 @@ export interface IProduct {
 	product_name: string;
 	selling_price: number;
 	cost_price: number;
+	image_url: string;
 }
 
 export interface IOrder {

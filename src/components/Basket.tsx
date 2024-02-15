@@ -57,10 +57,11 @@ export function Basket({ data: { cart, setCart } }: Props) {
 						Products
 					</h3>
 				</div>
-				{cart.map((item) => {
+				{cart.map((product) => {
 					return (
-						<div className="px-3 py-2 border-b-2 ">
-							<p>{item.product_name}</p>
+						<div className=" flex justify-between px-3 py-2 border-b-2 ">
+							<p>{product.product_name}</p>
+							<p>£{product.selling_price}</p>
 						</div>
 					);
 				})}
