@@ -132,18 +132,21 @@ export type Database = {
 					product_id: number;
 					product_name: string | null;
 					selling_price: number | null;
+					image_url: string | null;
 				};
 				Insert: {
 					cost_price?: number | null;
 					product_id?: number;
 					product_name?: string | null;
 					selling_price?: number | null;
+					image_url?: string | null;
 				};
 				Update: {
 					cost_price?: number | null;
 					product_id?: number;
 					product_name?: string | null;
 					selling_price?: number | null;
+					image_url?: string | null;
 				};
 				Relationships: [];
 			};

@@ -3,13 +3,14 @@ import { IProduct } from "@/types/global";
 import { useState } from "react";
 
 type Props = {
-	setProduts: React.Dispatch<React.SetStateAction<IProduct[]>>;
+	setProduts: React.Dispatch<React.SetStateAction<IProduct[] | undefined>>;
 };
 
 interface CustomForm extends EventTarget {
 	product_name: HTMLInputElement;
 	selling_price: HTMLInputElement;
 	cost_price: HTMLInputElement;
+	product_image: HTMLInputElement;
 }
 
 export function AddNewProduct({ setProduts }: Props) {
@@ -23,6 +24,7 @@ export function AddNewProduct({ setProduts }: Props) {
 			product_name: target.product_name.value,
 			selling_price: target.selling_price.value,
 			cost_price: target.cost_price.value,
+			image_url: target.product_image.value,
 		};
 
 		const response = await fetch("/api/products", {
@@ -34,7 +36,11 @@ export function AddNewProduct({ setProduts }: Props) {
 		}).then((data) => data.json());
 
 		setToggle(false);
-		setProduts((prev) => prev.concat(response));
+		setProduts((prev) => {
+			if (prev) {
+				return prev.concat(response);
+			}
+		});
 	};
 
 	return (
@@ -56,7 +62,7 @@ export function AddNewProduct({ setProduts }: Props) {
 						stroke="currentColor"
 						strokeLinecap="round"
 						strokeLinejoin="round"
-						stroke-width="2"
+						strokeWidth="2"
 						d="M5 12h14m-7 7V5"
 					/>
 				</svg>
@@ -92,7 +98,7 @@ export function AddNewProduct({ setProduts }: Props) {
 										stroke="currentColor"
 										strokeLinecap="round"
 										strokeLinejoin="round"
-										stroke-width="2"
+										strokeWidth="2"
 										d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
 									/>
 								</svg>
@@ -116,6 +122,21 @@ export function AddNewProduct({ setProduts }: Props) {
 										className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 										placeholder="Type product name"
 										required
+									/>
+								</div>
+								<div className="col-span-2">
+									<label
+										htmlFor="product_image"
+										className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+									>
+										Image
+									</label>
+									<input
+										type="text"
+										name="product_image"
+										id="product_image"
+										className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+										placeholder="Paste image URL here"
 									/>
 								</div>
 								<div className="col-span-2 sm:col-span-1">
@@ -162,9 +183,9 @@ export function AddNewProduct({ setProduts }: Props) {
 									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-										clip-rule="evenodd"
+										clipRule="evenodd"
 									/>
 								</svg>
 								Add new product
